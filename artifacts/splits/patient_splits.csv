@@ -1,0 +1,211 @@
+patient_id,grouping_id,selected_wsi_id,selected_wsi_number,age,sex,label,n_slides_available,has_label_conflict,labels_seen,split
+8007623_age55_Male,8007623,WSI-369,369,55,Male,Acinar,1,False,Acinar,train
+8008524_age54_Female,8008524,WSI-361,361,54,Female,Solid,1,False,Solid,train
+8013888_age63_Female,8013888,WSI-255,255,63,Female,Solid,3,False,Solid,train
+8017082_age63_Female,8017082,WSI-265,265,63,Female,Papillary,2,False,Papillary,train
+8020981_age36_Female,8020981,WSI-392,392,36,Female,In situ,1,False,In situ,validation
+8022410_age31_Female,8022410,WSI-71,71,31,Female,In situ,2,False,In situ,test
+8029758_age55_Female,8029758,WSI-105,105,55,Female,Cribriform,2,False,Cribriform,train
+8030821_age34_Female,8030821,WSI-33,33,34,Female,In situ,2,False,In situ,train
+8060308_age68_Male,8060308,WSI-213,213,68,Male,Papillary,4,False,Papillary,train
+8103477_age47_Female,8103477,WSI-97,97,47,Female,Papillary,1,False,Papillary,train
+8111526_age47_Female,8111526,WSI-232,232,47,Female,Solid,3,False,Solid,test
+8126701_age67_Male,8126701,WSI-264,264,67,Male,Cribriform,1,False,Cribriform,train
+8133249_age56_Female,8133249,WSI-21,21,56,Female,In situ,2,False,In situ,test
+8143088_age56_Female,8143088,WSI-378,378,56,Female,In situ,1,False,In situ,train
+8146413_age74_Male,8146413,WSI-286,286,74,Male,Acinar,2,False,Acinar,train
+8163836_age54_Male,8163836,WSI-341,341,54,Male,Lepidic,2,False,Lepidic,train
+8170462_age45_Female,8170462,WSI-346,346,45,Female,Lepidic,1,False,Lepidic,train
+8180155_age65_Male,8180155,WSI-331,331,65,Male,Micropapillary,3,False,Micropapillary,train
+8189481_age47_Female,8189481,WSI-55,55,47,Female,In situ,2,False,In situ,train
+8203346_age71_Male,8203346,WSI-196,196,71,Male,Cribriform,2,False,Cribriform,validation
+8215472_age53_Male,8215472,WSI-384,384,53,Male,In situ,2,False,In situ,test
+8219606_age75_Female,8219606,WSI-343,343,75,Female,Lepidic,1,False,Lepidic,train
+8221926_age65_Male,8221926,WSI-344,344,65,Male,Lepidic,1,False,Lepidic,train
+8221946_age60_Male,8221946,WSI-350,350,60,Male,Lepidic,1,False,Lepidic,train
+8223039_age53_Female,8223039,WSI-345,345,53,Female,In situ,1,False,In situ,train
+8224566_age46_Male,8224566,WSI-363,363,46,Male,Acinar,1,False,Acinar,train
+8225155_age47_Female,8225155,WSI-349,349,47,Female,Acinar,1,False,Acinar,validation
+8225322_age67_Female,8225322,WSI-347,347,67,Female,Lepidic,2,True,Lepidic|Papillary,train
+8225911_age49_Female,8225911,WSI-353,353,49,Female,In situ,1,False,In situ,test
+8226738_age42_Female,8226738,WSI-351,351,42,Female,Acinar,1,False,Acinar,train
+8227276_age45_Female,8227276,WSI-355,355,45,Female,Acinar,1,False,Acinar,train
+8227640_age46_Female,8227640,WSI-358,358,46,Female,In situ,1,False,In situ,train
+8227741_age56_Female,8227741,WSI-354,354,56,Female,Acinar,1,False,Acinar,test
+8227980_age50_Female,8227980,WSI-352,352,50,Female,Acinar,1,False,Acinar,test
+8228355_age56_Female,8228355,WSI-356,356,56,Female,Papillary,1,False,Papillary,train
+8228780_age44_Female,8228780,WSI-357,357,44,Female,In situ,1,False,In situ,train
+8229292_age36_Female,8229292,WSI-359,359,36,Female,In situ,1,False,In situ,train
+8231081_age57_Male,8231081,WSI-375,375,57,Male,Cribriform,1,False,Cribriform,train
+8234200_age65_Male,8234200,WSI-371,371,65,Male,Acinar,1,False,Acinar,validation
+8234694_age39_Female,8234694,WSI-360,360,39,Female,Acinar,1,False,Acinar,train
+8237784_age53_Female,8237784,WSI-364,364,53,Female,Lepidic,1,False,Lepidic,train
+8238261_age47_Female,8238261,WSI-366,366,47,Female,Acinar,1,False,Acinar,test
+8238589_age51_Female,8238589,WSI-365,365,51,Female,Acinar,1,False,Acinar,train
+8238702_age56_Female,8238702,WSI-362,362,56,Female,In situ,1,False,In situ,train
+8239884_age52_Male,8239884,WSI-367,367,52,Male,Papillary,2,False,Papillary,train
+8240634_age54_Female,8240634,WSI-372,372,54,Female,Acinar,2,True,Acinar|In situ,train
+8242401_age57_Female,8242401,WSI-370,370,57,Female,Lepidic,1,False,Lepidic,train
+8243660_age65_Female,8243660,WSI-376,376,65,Female,Acinar,1,False,Acinar,train
+8243928_age50_Male,8243928,WSI-377,377,50,Male,Solid,1,False,Solid,validation
+8243986_age50_Female,8243986,WSI-374,374,50,Female,In situ,1,False,In situ,test
+8244091_age52_Male,8244091,WSI-403,403,52,Male,Acinar,1,False,Acinar,test
+8245273_age44_Female,8245273,WSI-388,388,44,Female,In situ,1,False,In situ,train
+8245910_age51_Female,8245910,WSI-386,386,51,Female,Acinar,1,False,Acinar,train
+8245975_age60_Male,8245975,WSI-380,380,60,Male,Acinar,2,True,Acinar|Solid,train
+8246145_age45_Female,8246145,WSI-383,383,45,Female,In situ,1,False,In situ,validation
+8246209_age54_Female,8246209,WSI-387,387,54,Female,In situ,1,False,In situ,train
+8246451_age52_Female,8246451,WSI-393,393,52,Female,Acinar,1,False,Acinar,train
+8246533_age54_Female,8246533,WSI-382,382,54,Female,Papillary,1,False,Papillary,train
+8246551_age49_Female,8246551,WSI-379,379,49,Female,In situ,1,False,In situ,train
+8246791_age51_Female,8246791,WSI-389,389,51,Female,Lepidic,1,False,Lepidic,test
+8248340_age57_Female,8248340,WSI-391,391,57,Female,Lepidic,1,False,Lepidic,train
+8248357_age44_Male,8248357,WSI-390,390,44,Male,Lepidic,1,False,Lepidic,train
+8248415_age49_Female,8248415,WSI-398,398,49,Female,Lepidic,2,True,Acinar|Lepidic,train
+8248702_age53_Female,8248702,WSI-400,400,53,Female,Acinar,1,False,Acinar,train
+8248805_age46_Female,8248805,WSI-401,401,46,Female,Lepidic,2,True,Acinar|Lepidic,test
+8248854_age54_Female,8248854,WSI-396,396,54,Female,Lepidic,1,False,Lepidic,train
+8249894_age61_Female,8249894,WSI-404,404,61,Female,In situ,1,False,In situ,train
+8249974_age27_Female,8249974,WSI-397,397,27,Female,Acinar,1,False,Acinar,train
+8250047_age43_Female,8250047,WSI-407,407,43,Female,In situ,1,False,In situ,test
+8250185_age49_Male,8250185,WSI-394,394,49,Male,Acinar,2,False,Acinar,test
+8250390_age49_Female,8250390,WSI-405,405,49,Female,Solid,1,False,Solid,train
+8250645_age47_Female,8250645,WSI-194,194,47,Female,Micropapillary,2,False,Micropapillary,train
+8251032_age49_Female,8251032,WSI-408,408,49,Female,Micropapillary,1,False,Micropapillary,train
+8251346_age62_Male,8251346,WSI-406,406,62,Male,In situ,1,False,In situ,train
+8275340_age71_Male,8275340,WSI-112,112,71,Male,Papillary,2,False,Papillary,train
+8276073_age59_Female,8276073,WSI-160,160,59,Female,Solid,3,False,Solid,train
+8280993_age67_Female,8280993,WSI-116,116,67,Female,Cribriform,2,False,Cribriform,train
+8322782_age66_Male,8322782,WSI-107,107,66,Male,Solid,2,False,Solid,test
+8328230_age46_Female,8328230,WSI-7,7,46,Female,In situ,2,False,In situ,train
+8337687_age45_Female,8337687,WSI-67,67,45,Female,In situ,2,False,In situ,train
+8340298_age51_Male,8340298,WSI-3,3,51,Male,In situ,2,False,In situ,train
+8342197_age50_Female,8342197,WSI-174,174,50,Female,Papillary,3,False,Papillary,train
+8355990_age69_Female,8355990,WSI-288,288,69,Female,Acinar,2,False,Acinar,train
+8365118_age30_Female,8365118,WSI-9,9,30,Female,In situ,2,False,In situ,test
+8373873_age48_Female,8373873,WSI-1,1,48,Female,In situ,2,False,In situ,test
+8373888_age52_Male,8373888,WSI-13,13,52,Male,In situ,3,False,In situ,validation
+8374253_age40_Female,8374253,WSI-11,11,40,Female,In situ,2,False,In situ,test
+8374273_age53_Female,8374273,WSI-5,5,53,Female,In situ,2,False,In situ,train
+8375043_age57_Male,8375043,WSI-193,193,57,Male,Solid,1,False,Solid,train
+8375372_age70_Female,8375372,WSI-16,16,70,Female,Cribriform,3,False,Cribriform,train
+8377498_age46_Female,8377498,WSI-19,19,46,Female,In situ,2,False,In situ,train
+8377886_age68_Female,8377886,WSI-35,35,68,Female,Papillary,2,False,Papillary,test
+8377886_age69_Female,8377886,WSI-103,103,69,Female,Papillary,2,False,Papillary,test
+8377922_age42_Female,8377922,WSI-25,25,42,Female,In situ,2,False,In situ,train
+8378183_age49_Female,8378183,WSI-23,23,49,Female,In situ,2,False,In situ,train
+8378244_age44_Female,8378244,WSI-27,27,44,Female,In situ,2,False,In situ,train
+8378774_age54_Male,8378774,WSI-31,31,54,Male,Acinar,2,False,Acinar,train
+8378935_age69_Female,8378935,WSI-29,29,69,Female,In situ,2,False,In situ,validation
+8380032_age62_Male,8380032,WSI-37,37,62,Male,In situ,2,False,In situ,train
+8380220_age35_Male,8380220,WSI-39,39,35,Male,In situ,2,False,In situ,train
+8380598_age51_Male,8380598,WSI-77,77,51,Male,Papillary,1,False,Papillary,train
+8380665_age53_Female,8380665,WSI-41,41,53,Female,Papillary,1,False,Papillary,train
+8381104_age37_Female,8381104,WSI-42,42,37,Female,In situ,2,False,In situ,train
+8381316_age50_Female,8381316,WSI-44,44,50,Female,In situ,2,False,In situ,validation
+8382068_age35_Female,8382068,WSI-46,46,35,Female,In situ,2,False,In situ,train
+8383318_age69_Male,8383318,WSI-48,48,69,Male,Solid,3,False,Solid,test
+8383378_age59_Female,8383378,WSI-64,64,59,Female,In situ,2,False,In situ,train
+8383521_age59_Male,8383521,WSI-86,86,59,Male,Solid,3,False,Solid,train
+8384436_age35_Female,8384436,WSI-51,51,35,Female,In situ,4,False,In situ,train
+8384801_age56_Male,8384801,WSI-59,59,56,Male,Cribriform,2,False,Cribriform,train
+8385282_age63_Female,8385282,WSI-63,63,63,Female,Papillary,1,False,Papillary,validation
+8385363_age59_Male,8385363,WSI-57,57,59,Male,In situ,2,False,In situ,train
+8385456_age50_Female,8385456,WSI-61,61,50,Female,In situ,2,False,In situ,train
+8386141_age58_Male,8386141,WSI-190,190,58,Male,Micropapillary,2,False,Micropapillary,train
+8386241_age43_Male,8386241,WSI-66,66,43,Male,Micropapillary,1,False,Micropapillary,train
+8386342_age35_Female,8386342,WSI-69,69,35,Female,In situ,2,False,In situ,train
+8387212_age53_Male,8387212,WSI-73,73,53,Male,In situ,4,False,In situ,train
+8388318_age57_Male,8388318,WSI-78,78,57,Male,Papillary,2,False,Papillary,test
+8390717_age69_Male,8390717,WSI-80,80,69,Male,Micropapillary,3,False,Micropapillary,train
+8393154_age58_Female,8393154,WSI-83,83,58,Female,Micropapillary,3,False,Micropapillary,test
+8396592_age70_Male,8396592,WSI-89,89,70,Male,Micropapillary,2,False,Micropapillary,test
+8399843_age53_Male,8399843,WSI-93,93,53,Male,Papillary,2,False,Papillary,test
+8399864_age75_Female,8399864,WSI-95,95,75,Female,Solid,2,False,Solid,train
+8400161_age59_Female,8400161,WSI-98,98,59,Female,Papillary,2,False,Papillary,test
+8400293_age46_Female,8400293,WSI-91,91,46,Female,Papillary,2,False,Papillary,train
+8402871_age46_Male,8402871,WSI-100,100,46,Male,Solid,3,False,Solid,train
+8403108_age53_Male,8403108,WSI-127,127,53,Male,Papillary,3,False,Papillary,train
+8403576_age64_Female,8403576,WSI-109,109,64,Female,Papillary,2,False,Papillary,train
+8403586_age53_Female,8403586,WSI-122,122,53,Female,Solid,5,False,Solid,test
+8404064_age52_Female,8404064,WSI-130,130,52,Female,Solid,2,False,Solid,train
+8404220_age62_Female,8404220,WSI-114,114,62,Female,Micropapillary,2,False,Micropapillary,test
+8404326_age74_Female,8404326,WSI-111,111,74,Female,Papillary,1,False,Papillary,train
+8404498_age54_Male,8404498,WSI-120,120,54,Male,Papillary,2,False,Papillary,validation
+8405402_age70_Female,8405402,WSI-118,118,70,Female,Papillary,2,False,Papillary,train
+8406776_age60_Male,8406776,WSI-135,135,60,Male,Solid,2,False,Solid,validation
+8406914_age62_Male,8406914,WSI-132,132,62,Male,Solid,3,False,Solid,train
+8407538_age24_Female,8407538,WSI-145,145,24,Female,Solid,2,False,Solid,train
+8407602_age50_Male,8407602,WSI-137,137,50,Male,Solid,1,False,Solid,train
+8408447_age60_Female,8408447,WSI-138,138,60,Female,Papillary,2,False,Papillary,train
+8408497_age66_Male,8408497,WSI-140,140,66,Male,Papillary,3,False,Papillary,train
+8410228_age59_Male,8410228,WSI-143,143,59,Male,Solid,2,False,Solid,train
+8411469_age57_Male,8411469,WSI-169,169,57,Male,Micropapillary,3,False,Micropapillary,train
+8412818_age58_Male,8412818,WSI-147,147,58,Male,Micropapillary,3,False,Micropapillary,train
+8413637_age62_Male,8413637,WSI-150,150,62,Male,Micropapillary,2,False,Micropapillary,train
+8414312_age42_Male,8414312,WSI-157,157,42,Male,Solid,3,False,Solid,test
+8414703_age67_Female,8414703,WSI-152,152,67,Female,Papillary,2,False,Papillary,train
+8415370_age59_Female,8415370,WSI-154,154,59,Female,Micropapillary,3,False,Micropapillary,train
+8416065_age70_Female,8416065,WSI-248,248,70,Female,Papillary,2,False,Papillary,train
+8417145_age50_Female,8417145,WSI-166,166,50,Female,Micropapillary,3,False,Micropapillary,validation
+8417654_age43_Male,8417654,WSI-163,163,43,Male,Solid,3,False,Solid,validation
+8418084_age49_Female,8418084,WSI-172,172,49,Female,Papillary,2,False,Papillary,test
+8419053_age73_Male,8419053,WSI-177,177,73,Male,Solid,2,False,Solid,train
+8420384_age62_Female,8420384,WSI-220,220,62,Female,Papillary,2,False,Papillary,test
+8422802_age73_Male,8422802,WSI-180,180,73,Male,Papillary,2,False,Papillary,train
+8422879_age51_Male,8422879,WSI-179,179,51,Male,Solid,1,False,Solid,train
+8423960_age41_Female,8423960,WSI-188,188,41,Female,Micropapillary,2,False,Micropapillary,train
+8424483_age56_Male,8424483,WSI-186,186,56,Male,Solid,2,False,Solid,train
+8424691_age59_Female,8424691,WSI-182,182,59,Female,Papillary,2,False,Papillary,train
+8424956_age59_Female,8424956,WSI-192,192,59,Female,Papillary,1,False,Papillary,train
+8425512_age64_Female,8425512,WSI-184,184,64,Female,Papillary,2,False,Papillary,train
+8425534_age65_Female,8425534,WSI-222,222,65,Female,Papillary,2,False,Papillary,validation
+8427889_age40_Male,8427889,WSI-211,211,40,Male,Cribriform,2,False,Cribriform,train
+8428475_age49_Female,8428475,WSI-200,200,49,Female,Cribriform,2,False,Cribriform,train
+8429439_age55_Male,8429439,WSI-198,198,55,Male,Micropapillary,2,False,Micropapillary,train
+8430453_age44_Female,8430453,WSI-202,202,44,Female,Micropapillary,2,False,Micropapillary,validation
+8430989_age57_Female,8430989,WSI-204,204,57,Female,Solid,3,False,Solid,test
+8431695_age57_Female,8431695,WSI-207,207,57,Female,Solid,2,False,Solid,train
+8432886_age52_Male,8432886,WSI-209,209,52,Male,Papillary,2,False,Papillary,train
+8435204_age72_Female,8435204,WSI-227,227,72,Female,Cribriform,3,False,Cribriform,test
+8435688_age66_Male,8435688,WSI-224,224,66,Male,Solid,3,False,Solid,train
+8436038_age50_Female,8436038,WSI-217,217,50,Female,Papillary,3,False,Papillary,train
+8436460_age66_Female,8436460,WSI-241,241,66,Female,Solid,3,False,Solid,train
+8439102_age73_Female,8439102,WSI-230,230,73,Female,Micropapillary,2,False,Micropapillary,validation
+8441170_age53_Male,8441170,WSI-238,238,53,Male,Micropapillary,3,False,Micropapillary,train
+8441492_age62_Male,8441492,WSI-267,267,62,Male,Cribriform,2,False,Cribriform,train
+8441511_age80_Male,8441511,WSI-235,235,80,Male,Cribriform,3,False,Cribriform,test
+8442830_age53_Male,8442830,WSI-258,258,53,Male,Micropapillary,3,False,Micropapillary,train
+8444525_age66_Female,8444525,WSI-245,245,66,Female,Cribriform,3,False,Cribriform,train
+8445196_age66_Male,8445196,WSI-244,244,66,Male,Cribriform,1,False,Cribriform,test
+8445479_age63_Female,8445479,WSI-250,250,63,Female,Papillary,3,False,Papillary,train
+8446030_age58_Female,8446030,WSI-261,261,58,Female,Solid,3,False,Solid,train
+8446426_age57_Female,8446426,WSI-253,253,57,Female,Micropapillary,2,False,Micropapillary,train
+8447059_age58_Female,8447059,WSI-300,300,58,Female,Acinar,2,False,Acinar,train
+8448471_age50_Male,8448471,WSI-269,269,50,Male,Papillary,2,False,Papillary,test
+8449479_age59_Male,8449479,WSI-271,271,59,Male,Papillary,2,False,Papillary,train
+8452560_age72_Male,8452560,WSI-273,273,72,Male,Cribriform,2,False,Cribriform,train
+8494497_age62_Female,8494497,WSI-275,275,62,Female,Acinar,2,False,Acinar,validation
+8495518_age52_Male,8495518,WSI-277,277,52,Male,Micropapillary,3,False,Micropapillary,train
+8495760_age44_Male,8495760,WSI-280,280,44,Male,Acinar,2,False,Acinar,train
+8505034_age60_Female,8505034,WSI-320,320,60,Female,Acinar,2,False,Acinar,train
+8509161_age64_Female,8509161,WSI-308,308,64,Female,Lepidic,2,False,Lepidic,test
+8514715_age60_Male,8514715,WSI-282,282,60,Male,Acinar,2,False,Acinar,train
+8520787_age59_Male,8520787,WSI-284,284,59,Male,Lepidic,2,False,Lepidic,validation
+8532614_age72_Female,8532614,WSI-290,290,72,Female,Acinar,2,False,Acinar,test
+8532866_age71_Female,8532866,WSI-292,292,71,Female,Papillary,3,False,Papillary,train
+8533034_age73_Female,8533034,WSI-295,295,73,Female,Lepidic,2,False,Lepidic,train
+8534227_age44_Female,8534227,WSI-304,304,44,Female,Acinar,4,False,Acinar,train
+8534345_age79_Female,8534345,WSI-297,297,79,Female,Papillary,3,False,Papillary,test
+8536033_age67_Male,8536033,WSI-302,302,67,Male,Micropapillary,2,False,Micropapillary,train
+8539620_age53_Female,8539620,WSI-310,310,53,Female,Acinar,1,False,Acinar,train
+8540568_age58_Male,8540568,WSI-318,318,58,Male,Lepidic,2,False,Lepidic,train
+8542525_age50_Male,8542525,WSI-311,311,50,Male,Lepidic,2,False,Lepidic,validation
+8543369_age60_Female,8543369,WSI-313,313,60,Female,Acinar,2,False,Acinar,train
+8547959_age58_Female,8547959,WSI-315,315,58,Female,Lepidic,3,False,Lepidic,train
+8551092_age51_Female,8551092,WSI-327,327,51,Female,Micropapillary,2,False,Micropapillary,train
+8551431_age56_Male,8551431,WSI-322,322,56,Male,Micropapillary,3,False,Micropapillary,test
+8551521_age55_Female,8551521,WSI-325,325,55,Female,Lepidic,2,False,Lepidic,test
+8552577_age70_Male,8552577,WSI-329,329,70,Male,Acinar,2,False,Acinar,test
+8553258_age55_Male,8553258,WSI-336,336,55,Male,Micropapillary,5,False,Micropapillary,test
+8555105_age48_Female,8555105,WSI-334,334,48,Female,Papillary,2,False,Papillary,validation

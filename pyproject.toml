@@ -1,0 +1,24 @@
+[project]
+name = "lung-fusion-agent"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "huggingface-hub[cli]>=1.31.0",
+    "pandas>=3.0.5",
+    "scikit-learn>=1.9.1",
+]
+
+[project.scripts]
+lung-fusion-agent = "lung_fusion_agent:main"
+
+[build-system]
+requires = ["uv_build>=0.12.13,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.16.7",
+]
