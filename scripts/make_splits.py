@@ -69,7 +69,8 @@ def main() -> None:
 
     # Safety checks
     assert result["split"].notna().all()
-    assert len(result) == 210
+    assert len(result) == len(manifest)
+    assert len(result) == 204
     assert result["patient_id"].is_unique
     assert result["selected_wsi_id"].is_unique
 

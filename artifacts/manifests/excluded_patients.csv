@@ -1,0 +1,7 @@
+patient_id,grouping_id,age,sex,all_wsi_ids,labels_seen,exclusion_reason
+8219606_age75_Female,8219606,75,Female,WSI-343,Lepidic,no_image_available_in_pinned_revision
+8221926_age65_Male,8221926,65,Male,WSI-344,Lepidic,no_image_available_in_pinned_revision
+8226738_age42_Female,8226738,42,Female,WSI-351,Acinar,no_image_available_in_pinned_revision
+8238589_age51_Female,8238589,51,Female,WSI-365,Acinar,no_image_available_in_pinned_revision
+8243660_age65_Female,8243660,65,Female,WSI-376,Acinar,no_image_available_in_pinned_revision
+8388318_age57_Male,8388318,57,Male,WSI-78|WSI-79,Papillary,no_image_available_in_pinned_revision
