@@ -1,0 +1,35 @@
+{
+  "agent": "deterministic feedback-driven late-fusion search",
+  "best_trial": {
+    "balanced_accuracy_mean": 0.5138095238095238,
+    "balanced_accuracy_std": 0.08603586689262979,
+    "composite_mean": 0.6941462415546268,
+    "composite_sem": 0.015255831942101923,
+    "improved_incumbent": true,
+    "macro_auroc_mean": 0.8744829592997294,
+    "macro_auroc_std": 0.03638698661912879,
+    "material_improvement": true,
+    "rationale": "Generate a local weight-transfer neighbor around the current best trial 4. Among untried neighbors, prefer the candidate supported by standalone train-CV stream scores.",
+    "selection_score": 0.6865183255835758,
+    "trial_index": 4,
+    "weights": [
+      0.05,
+      0.2,
+      0.05,
+      0.7
+    ]
+  },
+  "completed_trials": 8,
+  "max_trials": 8,
+  "minimum_material_improvement": 0.001,
+  "patience": 4,
+  "stopping_reason": "trial_budget",
+  "stream_order": [
+    "metadata",
+    "uni2",
+    "virchow2",
+    "prism2"
+  ],
+  "test_set_evaluated": false,
+  "validation_set_evaluated": false
+}

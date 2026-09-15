@@ -1,0 +1,25 @@
+{
+  "classes": [
+    "Acinar",
+    "Cribriform",
+    "In situ",
+    "Lepidic",
+    "Micropapillary",
+    "Papillary",
+    "Solid"
+  ],
+  "fold_count": 15,
+  "n_repeats": 3,
+  "n_splits": 5,
+  "purpose": "Train-only OOF predictions for fusion-agent search.",
+  "seed": 42,
+  "streams": [
+    "metadata",
+    "uni2",
+    "virchow2",
+    "prism2"
+  ],
+  "test_set_evaluated": false,
+  "train_patients": 141,
+  "validation_set_evaluated": false
+}

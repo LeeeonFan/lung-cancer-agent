@@ -1,0 +1,22 @@
+{
+  "n_repeats": 3,
+  "n_splits": 5,
+  "representations": [
+    "early_concat",
+    "early_l2_concat"
+  ],
+  "seed": 42,
+  "selected_configs": {
+    "early_concat": {
+      "c_value": 0.0001,
+      "class_weight": "balanced"
+    },
+    "early_l2_concat": {
+      "c_value": 0.0001,
+      "class_weight": "balanced"
+    }
+  },
+  "selection_metric": "mean((macro_auroc + balanced_accuracy) / 2) - 0.5 * SEM",
+  "test_set_evaluated": false,
+  "validation_set_evaluated": false
+}
