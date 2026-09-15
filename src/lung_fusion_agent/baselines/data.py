@@ -183,6 +183,13 @@ def load_baseline_dataset() -> BaselineDataset:
 
     representations["metadata"] = metadata
 
+    representations["prism2_metadata"] = np.column_stack(
+        [
+            representations["prism2"],
+            metadata,
+        ]
+    ).astype(np.float32)
+
     grouping_ids = aligned["grouping_id"].astype(str).to_numpy()
 
     split_names = aligned["split"].astype(str).to_numpy()

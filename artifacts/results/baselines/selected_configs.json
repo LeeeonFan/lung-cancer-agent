@@ -11,6 +11,10 @@
       "c_value": 0.001,
       "class_weight": null
     },
+    "prism2_metadata": {
+      "c_value": 0.001,
+      "class_weight": null
+    },
     "uni2": {
       "c_value": 0.01,
       "class_weight": "balanced"

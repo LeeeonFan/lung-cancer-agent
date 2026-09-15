@@ -26,6 +26,7 @@ REPRESENTATIONS = [
     "uni2",
     "virchow2",
     "prism2",
+    "prism2_metadata",
 ]
 
 OUTPUT_DIR = Path("artifacts/results/baselines")
