@@ -17,7 +17,14 @@ data/processed/
 # Generated artifacts
 artifacts/embeddings/
 artifacts/logs/
-artifacts/results/
+# Keep small experiment tables and decision logs versioned.
+# Ignore large binary model/result artifacts.
+artifacts/results/**/*.npz
+artifacts/results/**/*.npy
+artifacts/results/**/*.pt
+artifacts/results/**/*.pth
+artifacts/results/**/*.joblib
+artifacts/results/**/*.pkl
 
 # envs
 .env

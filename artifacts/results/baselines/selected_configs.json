@@ -1,0 +1,26 @@
+{
+  "n_repeats": 3,
+  "n_splits": 5,
+  "seed": 42,
+  "selected_configs": {
+    "metadata": {
+      "c_value": 10.0,
+      "class_weight": "balanced"
+    },
+    "prism2": {
+      "c_value": 0.001,
+      "class_weight": null
+    },
+    "uni2": {
+      "c_value": 0.01,
+      "class_weight": "balanced"
+    },
+    "virchow2": {
+      "c_value": 0.01,
+      "class_weight": null
+    }
+  },
+  "selection_metric": "mean((macro_auroc + balanced_accuracy) / 2) - 0.5 * SEM",
+  "test_set_evaluated": false,
+  "trial_count_per_representation": 12
+}

@@ -1,0 +1,5 @@
+representation,c_value,class_weight,macro_auroc,balanced_accuracy,per_class_auroc_json
+metadata,10.0,balanced,0.559354063262732,0.16428571428571428,"{""Acinar"": 0.6111111111111112, ""Cribriform"": 0.19999999999999996, ""In situ"": 0.4375, ""Lepidic"": 0.6973684210526316, ""Micropapillary"": 0.39814814814814814, ""Papillary"": 0.8676470588235294, ""Solid"": 0.7037037037037037}"
+uni2,0.01,balanced,0.8345547283240783,0.4714285714285714,"{""Acinar"": 0.9259259259259259, ""Cribriform"": 0.9, ""In situ"": 0.9125, ""Lepidic"": 0.5789473684210527, ""Micropapillary"": 0.888888888888889, ""Papillary"": 0.6911764705882353, ""Solid"": 0.9444444444444444}"
+virchow2,0.01,none,0.8537477271610397,0.4119047619047619,"{""Acinar"": 1.0, ""Cribriform"": 0.8, ""In situ"": 0.9375, ""Lepidic"": 0.5263157894736843, ""Micropapillary"": 0.9259259259259259, ""Papillary"": 0.8235294117647058, ""Solid"": 0.9629629629629629}"
+prism2,0.001,none,0.916579438793061,0.5428571428571428,"{""Acinar"": 0.9074074074074074, ""Cribriform"": 0.95, ""In situ"": 0.975, ""Lepidic"": 0.6315789473684211, ""Micropapillary"": 0.9814814814814814, ""Papillary"": 0.9705882352941176, ""Solid"": 1.0}"
