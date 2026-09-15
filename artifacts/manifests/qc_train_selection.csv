@@ -1,0 +1,15 @@
+patient_id,grouping_id,wsi_id,label,split,thumbnail_path
+8494497_age62_Female,8494497,WSI-275,Acinar,train,data/processed/qc_train/thumbnails/acinar_WSI-275.jpg
+8495760_age44_Male,8495760,WSI-280,Acinar,train,data/processed/qc_train/thumbnails/acinar_WSI-280.jpg
+8375372_age70_Female,8375372,WSI-16,Cribriform,train,data/processed/qc_train/thumbnails/cribriform_WSI-16.jpg
+8384801_age56_Male,8384801,WSI-59,Cribriform,train,data/processed/qc_train/thumbnails/cribriform_WSI-59.jpg
+8340298_age51_Male,8340298,WSI-3,In situ,train,data/processed/qc_train/thumbnails/in_situ_WSI-3.jpg
+8374273_age53_Female,8374273,WSI-5,In situ,train,data/processed/qc_train/thumbnails/in_situ_WSI-5.jpg
+8520787_age59_Male,8520787,WSI-284,Lepidic,train,data/processed/qc_train/thumbnails/lepidic_WSI-284.jpg
+8542525_age50_Male,8542525,WSI-311,Lepidic,train,data/processed/qc_train/thumbnails/lepidic_WSI-311.jpg
+8396592_age70_Male,8396592,WSI-89,Micropapillary,train,data/processed/qc_train/thumbnails/micropapillary_WSI-89.jpg
+8412818_age58_Male,8412818,WSI-147,Micropapillary,train,data/processed/qc_train/thumbnails/micropapillary_WSI-147.jpg
+8380665_age53_Female,8380665,WSI-41,Papillary,train,data/processed/qc_train/thumbnails/papillary_WSI-41.jpg
+8385282_age63_Female,8385282,WSI-63,Papillary,train,data/processed/qc_train/thumbnails/papillary_WSI-63.jpg
+8383318_age69_Male,8383318,WSI-48,Solid,train,data/processed/qc_train/thumbnails/solid_WSI-48.jpg
+8383521_age59_Male,8383521,WSI-86,Solid,train,data/processed/qc_train/thumbnails/solid_WSI-86.jpg

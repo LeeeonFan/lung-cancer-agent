@@ -1,0 +1,24 @@
+magnification:
+  source: 80
+  target: 20
+  linear_downsample: 4
+
+tile:
+  size_pixels: 224
+  stride_pixels: 224
+  minimum_tissue_fraction: 0.50
+  maximum_tiles_per_slide: 1024
+
+tissue_mask:
+  mask_downsample_from_20x: 16
+  saturation_threshold: 0.08
+  minimum_value: 0.20
+  maximum_value: 0.97
+  minimum_component_fraction: 0.0005
+  morphology_kernel_size: 3
+  opening_iterations: 1
+  closing_iterations: 2
+
+sampling:
+  method: deterministic_uniform_random
+  seed: 42
