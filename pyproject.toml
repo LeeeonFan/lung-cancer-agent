@@ -7,6 +7,7 @@ requires-python = ">=3.11"
 dependencies = [
     "huggingface-hub[cli]>=1.31.0",
     "pandas>=3.0.5",
+    "pyvips>=3.2.0",
     "scikit-learn>=1.9.1",
 ]
 

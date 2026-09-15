@@ -12,6 +12,7 @@ wheels/
 # Dataset files
 data/raw/
 data/interim/
+data/processed/
 
 # Generated artifacts
 artifacts/embeddings/
