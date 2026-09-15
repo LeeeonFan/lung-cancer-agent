@@ -1,0 +1,54 @@
+{
+  "group_leakage_detected": false,
+  "models": {
+    "prism2": {
+      "all_finite": true,
+      "dtype": "float32",
+      "max_l2_norm": 50.506927490234375,
+      "mean_l2_norm": 50.50242233276367,
+      "min_l2_norm": 50.49861145019531,
+      "patient_order_matches": true,
+      "row_order_matches": true,
+      "shape": [
+        204,
+        2560
+      ],
+      "wsi_order_matches": true
+    },
+    "uni2": {
+      "all_finite": true,
+      "dtype": "float32",
+      "max_l2_norm": 16.69753074645996,
+      "mean_l2_norm": 13.089027404785156,
+      "min_l2_norm": 9.504681587219238,
+      "patient_order_matches": true,
+      "row_order_matches": true,
+      "shape": [
+        204,
+        1536
+      ],
+      "wsi_order_matches": true
+    },
+    "virchow2": {
+      "all_finite": true,
+      "dtype": "float32",
+      "max_l2_norm": 41.44015884399414,
+      "mean_l2_norm": 34.327247619628906,
+      "min_l2_norm": 29.118608474731445,
+      "patient_order_matches": true,
+      "row_order_matches": true,
+      "shape": [
+        204,
+        2560
+      ],
+      "wsi_order_matches": true
+    }
+  },
+  "patient_count": 204,
+  "split_counts": {
+    "test": 42,
+    "train": 141,
+    "validation": 21
+  },
+  "tile_count": 200488
+}

@@ -1,0 +1,54 @@
+{
+  "canonical_order": "numeric selected_wsi_id",
+  "embedding_repository": "AliothMe/lung-fusion-embeddings",
+  "embedding_repository_revision": "06bdbaa228c08813e4a87704b300c5c9335d7e58",
+  "models": {
+    "prism2": {
+      "input_dimension": 1280,
+      "input_feature": "class_token_only",
+      "input_model": "paige-ai/Virchow2",
+      "model_name": "prism2",
+      "output_dtype": "float32",
+      "output_path": "data/processed/slide_embeddings/prism2_slide_embeddings.npz",
+      "output_sha256": "7a9bc5882dfdec69b3c7e7f654e3207ea8d9b7147486802f324a8a9917175b39",
+      "pooling": "prism2_perceiver_base",
+      "slide_count": 204,
+      "slide_embedding_dimension": 2560,
+      "source_model": "paige-ai/Prism2",
+      "source_revision": "450352d0ddc6b42b21ce20794ce0fbefe6b5a47a",
+      "source_tile_count": 200488
+    },
+    "uni2": {
+      "accumulation_dtype": "float64",
+      "model_name": "uni2",
+      "output_dtype": "float32",
+      "output_path": "data/processed/slide_embeddings/uni2_slide_embeddings.npz",
+      "output_sha256": "3bcb7958b0e05f61d59f798499f85d6e89acf5cc16315b8ce868c372019cb524",
+      "pooling": "arithmetic_mean",
+      "slide_count": 204,
+      "slide_embedding_dimension": 1536,
+      "source_file_count": 49,
+      "source_model": "MahmoodLab/UNI2-h",
+      "source_revision": "d517a8dd47902dd7c308b3c36f63bce47e7b9a43",
+      "source_tile_count": 200488,
+      "tile_embedding_dimension": 1536
+    },
+    "virchow2": {
+      "accumulation_dtype": "float64",
+      "model_name": "virchow2",
+      "output_dtype": "float32",
+      "output_path": "data/processed/slide_embeddings/virchow2_slide_embeddings.npz",
+      "output_sha256": "1c4b077c6f04965ebb5d02b91a560a973c69a7c65f69d6e345350c565892aecd",
+      "pooling": "arithmetic_mean",
+      "slide_count": 204,
+      "slide_embedding_dimension": 2560,
+      "source_file_count": 49,
+      "source_model": "paige-ai/Virchow2",
+      "source_revision": "3158645804b69e3f3bc4439d4116edddf0840a72",
+      "source_tile_count": 200488,
+      "tile_embedding_dimension": 2560
+    }
+  },
+  "patient_count": 204,
+  "tile_count": 200488
+}
