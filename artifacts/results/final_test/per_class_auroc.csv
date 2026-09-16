@@ -1,0 +1,43 @@
+configuration,class_name,auroc
+metadata,Acinar,0.6018518518518519
+metadata,Cribriform,0.9487179487179487
+metadata,In situ,0.8905723905723906
+metadata,Lepidic,0.5
+metadata,Micropapillary,0.7081081081081081
+metadata,Papillary,0.6582491582491582
+metadata,Solid,0.6018518518518519
+uni2,Acinar,0.8148148148148149
+uni2,Cribriform,0.8803418803418803
+uni2,In situ,0.9023569023569024
+uni2,Lepidic,0.743421052631579
+uni2,Micropapillary,0.772972972972973
+uni2,Papillary,0.7373737373737373
+uni2,Solid,0.888888888888889
+virchow2,Acinar,0.837962962962963
+virchow2,Cribriform,0.7863247863247863
+virchow2,In situ,0.8956228956228955
+virchow2,Lepidic,0.7039473684210527
+virchow2,Micropapillary,0.7783783783783784
+virchow2,Papillary,0.8013468013468014
+virchow2,Solid,0.8703703703703703
+prism2,Acinar,0.6851851851851852
+prism2,Cribriform,0.752136752136752
+prism2,In situ,0.9427609427609428
+prism2,Lepidic,0.7039473684210527
+prism2,Micropapillary,0.8378378378378379
+prism2,Papillary,0.8585858585858586
+prism2,Solid,0.875
+prism2_metadata,Acinar,0.6851851851851852
+prism2_metadata,Cribriform,0.752136752136752
+prism2_metadata,In situ,0.9427609427609428
+prism2_metadata,Lepidic,0.7039473684210527
+prism2_metadata,Micropapillary,0.8378378378378379
+prism2_metadata,Papillary,0.8585858585858586
+prism2_metadata,Solid,0.875
+fused_fixed_logit,Acinar,0.7546296296296297
+fused_fixed_logit,Cribriform,0.8119658119658121
+fused_fixed_logit,In situ,0.9427609427609427
+fused_fixed_logit,Lepidic,0.7697368421052632
+fused_fixed_logit,Micropapillary,0.827027027027027
+fused_fixed_logit,Papillary,0.8552188552188551
+fused_fixed_logit,Solid,0.8842592592592593

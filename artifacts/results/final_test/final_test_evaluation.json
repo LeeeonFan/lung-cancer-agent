@@ -1,0 +1,19 @@
+{
+  "best_single_locked_before_test": "prism2",
+  "bootstrap_replicates": 2000,
+  "bootstrap_unit": "grouping_id cluster",
+  "development_records": 162,
+  "fused_strictly_beats_all_single_models_on_both_primary_metrics": false,
+  "fusion_weights": [
+    0.05,
+    0.25,
+    0.05,
+    0.65
+  ],
+  "seed": 42,
+  "selected_strategy": "fused_fixed_logit",
+  "test_evaluation_completed_once": true,
+  "test_grouping_ids": 41,
+  "test_records": 42,
+  "test_set_evaluated": true
+}

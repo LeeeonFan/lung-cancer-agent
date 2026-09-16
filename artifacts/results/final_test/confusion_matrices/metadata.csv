@@ -1,0 +1,8 @@
+true_label,Acinar,Cribriform,In situ,Lepidic,Micropapillary,Papillary,Solid
+Acinar,0,1,2,1,0,1,1
+Cribriform,0,2,0,0,0,1,0
+In situ,0,0,7,1,0,0,1
+Lepidic,0,0,0,1,0,2,1
+Micropapillary,0,1,0,0,1,2,1
+Papillary,0,1,2,0,0,5,1
+Solid,0,0,0,0,0,3,3
