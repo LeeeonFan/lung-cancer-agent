@@ -48,6 +48,7 @@ def main() -> None:
         max_trials=MAX_TRIALS,
         patience=PATIENCE,
         minimum_improvement=(MINIMUM_IMPROVEMENT),
+        fusion_method="logit",
     )
 
     trials = agent.run(
@@ -67,11 +68,11 @@ def main() -> None:
     trial_frame = trial_frame.drop(columns=["weights"])
 
     trial_frame.to_csv(
-        OUTPUT_DIR / "late_fusion_trials.csv",
+        OUTPUT_DIR / "late_fusion_logit_trials.csv",
         index=False,
     )
 
-    decision_log_path = OUTPUT_DIR / "decision_log.jsonl"
+    decision_log_path = OUTPUT_DIR / "logit_decision_log.jsonl"
 
     with decision_log_path.open(
         "w",
@@ -107,7 +108,7 @@ def main() -> None:
         "test_set_evaluated": False,
     }
 
-    (OUTPUT_DIR / "late_fusion_best.json").write_text(
+    (OUTPUT_DIR / "late_fusion_logit_best.json").write_text(
         json.dumps(
             result_summary,
             indent=2,

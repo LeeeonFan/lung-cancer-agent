@@ -88,6 +88,66 @@ def fuse_probabilities(
         copy=False,
     )
 
+def fuse_log_probabilities(
+    probabilities: np.ndarray,
+    weights: np.ndarray,
+    *,
+    epsilon: float = 1e-7,
+) -> np.ndarray:
+    """Fuse predictions using a weighted geometric mean."""
+    if probabilities.ndim != 3:
+        raise ValueError(
+            "Probabilities must have shape "
+            "(patients, streams, classes)."
+        )
+
+    normalized_weights = validate_weights(
+        weights,
+        expected_streams=(
+            probabilities.shape[1]
+        ),
+    )
+
+    if not np.isfinite(
+        probabilities
+    ).all():
+        raise ValueError(
+            "Probabilities contain NaN or infinity."
+        )
+
+    clipped = np.clip(
+        probabilities,
+        epsilon,
+        1.0,
+    )
+
+    weighted_log_probabilities = np.einsum(
+        "nsc,s->nc",
+        np.log(clipped),
+        normalized_weights,
+    )
+
+    # Numerically stable softmax.
+    weighted_log_probabilities -= (
+        weighted_log_probabilities.max(
+            axis=1,
+            keepdims=True,
+        )
+    )
+
+    fused = np.exp(
+        weighted_log_probabilities
+    )
+
+    fused /= fused.sum(
+        axis=1,
+        keepdims=True,
+    )
+
+    return fused.astype(
+        np.float32,
+        copy=False,
+    )
 
 def evaluate_late_fusion(
     *,
@@ -96,6 +156,7 @@ def evaluate_late_fusion(
     labels: np.ndarray,
     class_names: list[str],
     weights: np.ndarray,
+    fusion_method: str = "probability",
 ) -> LateFusionResult:
     if probability_cache.ndim != 4:
         raise ValueError(
@@ -128,10 +189,25 @@ def evaluate_late_fusion(
             :,
         ]
 
-        fused_probabilities = fuse_probabilities(
-            fold_probabilities,
-            normalized_weights,
-        )
+        if fusion_method == "probability":
+            fused_probabilities = (
+                fuse_probabilities(
+                    fold_probabilities,
+                    normalized_weights,
+                )
+            )
+        elif fusion_method == "logit":
+            fused_probabilities = (
+                fuse_log_probabilities(
+                    fold_probabilities,
+                    normalized_weights,
+                )
+            )
+        else:
+            raise ValueError(
+                "Unknown fusion method: "
+                f"{fusion_method}"
+            )
 
         metrics = calculate_classification_metrics(
             y_true=labels[fold_mask],

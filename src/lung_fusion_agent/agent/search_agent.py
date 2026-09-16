@@ -42,6 +42,7 @@ class LateFusionSearchAgent:
         max_trials: int = 8,
         patience: int = 4,
         minimum_improvement: float = 0.001,
+        fusion_method: str = "probability",
     ) -> None:
         if stream_names != [
             "metadata",
@@ -51,11 +52,18 @@ class LateFusionSearchAgent:
         ]:
             raise ValueError("Unexpected stream order.")
 
+        if fusion_method not in {
+            "probability",
+            "logit",
+        }:
+            raise ValueError(f"Unknown fusion method: {fusion_method}")
+
         self.stream_names = stream_names
         self.standalone_scores = standalone_scores
         self.max_trials = max_trials
         self.patience = patience
         self.minimum_improvement = minimum_improvement
+        self.fusion_method = fusion_method
 
         self.trials: list[FusionTrial] = []
         self._attempted_weights: set[tuple[float, ...]] = set()
@@ -298,11 +306,12 @@ class LateFusionSearchAgent:
             )
 
             result = evaluate_late_fusion(
-                probability_cache=(probability_cache),
-                validation_masks=(validation_masks),
+                probability_cache=probability_cache,
+                validation_masks=validation_masks,
                 labels=labels,
                 class_names=class_names,
                 weights=np.asarray(proposal.weights),
+                fusion_method=(self.fusion_method),
             )
 
             trial = self.observe(
