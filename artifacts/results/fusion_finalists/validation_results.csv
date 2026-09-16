@@ -1,0 +1,3 @@
+strategy,macro_auroc,balanced_accuracy,composite_score,per_class_auroc_json
+fixed_logit,0.9062218454633315,0.5428571428571428,0.7245394941602372,"{""Acinar"": 0.9444444444444444, ""Cribriform"": 0.9, ""In situ"": 0.975, ""Lepidic"": 0.6052631578947368, ""Micropapillary"": 0.9814814814814814, ""Papillary"": 0.9558823529411764, ""Solid"": 0.9814814814814814}"
+metadata_gated,0.8998169443215883,0.5428571428571428,0.7213370435893656,"{""Acinar"": 0.9444444444444444, ""Cribriform"": 0.9, ""In situ"": 0.975, ""Lepidic"": 0.5789473684210527, ""Micropapillary"": 0.9629629629629629, ""Papillary"": 0.9558823529411764, ""Solid"": 0.9814814814814814}"

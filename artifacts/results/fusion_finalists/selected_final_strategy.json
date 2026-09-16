@@ -1,0 +1,30 @@
+{
+  "fixed_logit_weights": [
+    0.05,
+    0.25,
+    0.05,
+    0.65
+  ],
+  "gated_configuration": {
+    "class_weight_balanced": true,
+    "mean_validation_gates": {
+      "metadata": 0.04943470656871796,
+      "prism2": 0.652994692325592,
+      "uni2": 0.24822194874286652,
+      "virchow2": 0.049348682165145874
+    },
+    "optimization_message": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+    "optimization_success": true,
+    "regularization": 1.0
+  },
+  "selected_strategy": "fixed_logit",
+  "selection_reason": "Gated fusion did not clear the predeclared minimum validation gain; select the simpler fixed logit fusion.",
+  "selection_rule": {
+    "maximum_allowed_auroc_decrease": 0.005,
+    "maximum_allowed_balanced_accuracy_decrease": 0.01,
+    "minimum_composite_gain_for_gated": 0.005
+  },
+  "test_set_evaluated": false,
+  "validation_evaluated_once": true,
+  "validation_patient_count": 21
+}
