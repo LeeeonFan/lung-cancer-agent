@@ -1,0 +1,33 @@
+{
+  "best_trial": {
+    "balanced_accuracy_mean": 0.5207936507936508,
+    "balanced_accuracy_std": 0.09642318229110866,
+    "class_weight_balanced": true,
+    "composite_mean": 0.6982866924598292,
+    "composite_sem": 0.01628223818498064,
+    "macro_auroc_mean": 0.8757797341260073,
+    "macro_auroc_std": 0.03476725048665022,
+    "mean_gate_metadata": 0.04936147481203079,
+    "mean_gate_prism2": 0.6558008790016174,
+    "mean_gate_uni2": 0.24562321603298187,
+    "mean_gate_virchow2": 0.04921441152691841,
+    "optimization_success_rate": 1.0,
+    "regularization": 1.0,
+    "selection_score": 0.690145573367339,
+    "trial_index": 3
+  },
+  "gate_parameter_count": 12,
+  "inner_splits": 4,
+  "outer_repeats": 3,
+  "outer_splits": 5,
+  "prior_weights": [
+    0.05,
+    0.25,
+    0.05,
+    0.65
+  ],
+  "strategy": "metadata_conditioned_logit_gate",
+  "test_set_evaluated": false,
+  "trial_budget": 8,
+  "validation_set_evaluated": false
+}
