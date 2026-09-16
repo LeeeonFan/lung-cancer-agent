@@ -1,0 +1,23 @@
+{
+  "best_trial": {
+    "balanced_accuracy_mean": 0.4560090702947846,
+    "balanced_accuracy_std": 0.08769864565366126,
+    "c_value": 0.01,
+    "class_weight": "balanced",
+    "composite_mean": 0.6497890315822511,
+    "composite_sem": 0.014820480362123262,
+    "composite_std": 0.057399473625297466,
+    "macro_auroc_mean": 0.8435689928697175,
+    "macro_auroc_std": 0.03531455387784696,
+    "selection_score": 0.6423787914011895,
+    "trial_index": 1
+  },
+  "inner_splits": 4,
+  "meta_feature_count": 28,
+  "outer_repeats": 3,
+  "outer_splits": 5,
+  "strategy": "nested_probability_stacking",
+  "test_set_evaluated": false,
+  "trial_budget": 8,
+  "validation_set_evaluated": false
+}
