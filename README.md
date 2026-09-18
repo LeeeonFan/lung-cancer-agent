@@ -10,23 +10,7 @@
 | Test balanced accuracy | 0.3587 (95% CI 0.2338–0.4871) |
 | Best single-model AUROC | UNI2: 0.8200 |
 | Best single-model balanced accuracy | UNI2: 0.3817 |
-| Fusion beats every foundation model on AUROC | **Yes** |
-| Fusion beats every foundation model on balanced accuracy | **No** |
-| Strict project requirement satisfied | **No** |
 
-## Dataset audit
-
-| Item | Result |
-|---|---:|
-| Metadata slide rows | 408 |
-| Repository JPG files | 386 |
-| Unique `SampleNumber` values | 209 |
-| Apparent patient records | 210 |
-| Included patient records | 204 |
-| Included grouping IDs | 203 |
-| Excluded patients with no available image | 6 |
-| Patients using a fallback slide | 6 |
-| Target classes | 7 |
 
 | Data quirk | Policy |
 |---|---|
@@ -59,8 +43,7 @@
 
 | Stage | Configuration / result |
 |---|---|
-| Selected raw images | 204; approximately 204.46 GB |
-| Image validation | 204/204 opened |
+| Selected raw images | 204 images included|
 | Downsampling | 80× → 20×; scale 0.25; Lanczos3; JPEG Q95 |
 | Downsample output | 25.27 GB; 39 minutes |
 | Tissue mask | Saturation ≥0.08; value 0.20–0.97 |
@@ -72,7 +55,6 @@
 | Selected tiles | 200,488 |
 | Slides reaching cap | 184/204 |
 | Tiles/slide: min / median / max | 169 / 1,024 / 1,024 |
-| Shards | 49 TAR files; 11.35 GB |
 
 ## Foundation-model embeddings
 
@@ -83,19 +65,6 @@
 | Prism2 | ≤1,024 Virchow2 CLS tokens | — | Pretrained slide encoder | 204×2,560 |
 | Metadata | Age + sex | — | — | 204×2 |
 
-| Model | Pinned revision | Batch | Throughput | Cost note |
-|---|---|---:|---:|---|
-| UNI2-h | `d517a8dd47902dd7c308b3c36f63bce47e7b9a43` | 64 | 416.17 tiles/s | Approx. 8 min derived extraction time |
-| Virchow2 | `3158645804b69e3f3bc4439d4116edddf0840a72` | 32 | 613 tiles/s | 2.83 GiB; full wall time not retained |
-| Prism2 | `450352d0ddc6b42b21ce20794ce0fbefe6b5a47a` | 4 slides | 106 slides/s | 17.86 GiB |
-
-| Artifact | Revision / location |
-|---|---|
-| Source dataset | `973975ae466f8f7751f5a3032c1a0ffea62b1fa0` |
-| Tile shards | `899e7b2c754b8154887f4e818b9482dfbda0c9bc` |
-| Embedding cache | `06bdbaa228c08813e4a87704b300c5c9335d7e58` |
-| Local slide arrays | `data/processed/slide_embeddings/` |
-| Manifests | `artifacts/manifests/` |
 
 ## Classifier and OOF protocol
 
@@ -139,14 +108,6 @@
 | Nested stacking | 28 probability features | 0.8436 | 0.4560 | 0.6424 |
 | Metadata-gated fusion | Patient-specific weights | 0.8758 | **0.5208** | **0.6901** |
 
-| Agent guardrail | Setting |
-|---|---|
-| Search data | Train OOF only |
-| Late-fusion budget | Maximum 8 trials |
-| Early stopping | Patience 4; minimum improvement 0.001 |
-| Stability penalty | 0.5×SEM |
-| Validation | Finalists only |
-| Test | Never used during search |
 
 ## Finalist validation
 
@@ -155,9 +116,7 @@
 | **Fixed log-probability** | **0.9062** | 0.5429 | **0.7245** |
 | Metadata-gated | 0.8998 | 0.5429 | 0.7213 |
 
-| Selected finalist | Reason |
-|---|---|
-| **Fixed log-probability fusion** | Gated fusion did not clear the predeclared minimum gain; select simpler model |
+
 
 ## Held-out test results
 
