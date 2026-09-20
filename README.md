@@ -36,8 +36,6 @@
 | Seed | 42 |
 | Grouping IDs: train / validation / test | 141 / 21 / 41 |
 | Stratification | 7-class subtype |
-| Group leakage | None detected |
-| Test use | Once, after finalist lock |
 
 ## Image processing and tiling
 
@@ -66,98 +64,96 @@
 | Metadata | Age + sex | — | — | 204×2 |
 
 
-## Classifier and OOF protocol
+## Original Locked Test Results
 
-| Item | Configuration |
-|---|---|
-| Classifier | `StandardScaler → multinomial LogisticRegression` |
-| `C` grid | 0.0001, 0.001, 0.01, 0.1, 1, 10 |
-| Class weights | None, balanced |
-| Budget | 12 configurations per representation |
-| CV | Repeated stratified 5-fold ×3 repeats = 15 splits |
-| OOF predictions | 3 per patient per model |
-| Composite | (macro AUROC + balanced accuracy) / 2 |
-| Selection score | Mean composite − 0.5×SEM |
+The original pipeline used `StandardScaler → LogisticRegression`. Hyperparameters were selected using repeated stratified 5-fold cross-validation with three repeats. The locked test set was evaluated once.
 
-| Representation | Selected C | Class weight |
-|---|---:|---|
-| Metadata | 10 | balanced |
-| UNI2-h | 0.01 | balanced |
-| Virchow2 | 0.01 | none |
-| Prism2 | 0.001 | none |
-| Prism2 + metadata | 0.001 | none |
-
-## Baselines
-
-| Representation | Train-CV AUROC | Train-CV BA | Selection score | Validation AUROC | Validation BA |
-|---|---:|---:|---:|---:|---:|
-| Metadata | 0.5979 | 0.2516 | 0.4156 | 0.5594 | 0.1643 |
-| UNI2-h | 0.8270 | 0.4388 | 0.6284 | 0.8346 | 0.4714 |
-| Virchow2 | 0.8069 | 0.3975 | 0.5944 | 0.8537 | 0.4119 |
-| Prism2 | 0.8691 | 0.5044 | 0.6780 | **0.9166** | **0.5429** |
-| Prism2 + metadata | **0.8692** | **0.5044** | **0.6781** | **0.9166** | **0.5429** |
-
-## Fusion search
-
-| Strategy | Configuration | Macro AUROC | Balanced accuracy | Selection score |
-|---|---|---:|---:|---:|
-| Early concatenation | Raw 6,658-d | 0.8627 | 0.4976 | 0.6739 |
-| Early L2 concatenation | Per-stream normalization | 0.8625 | 0.5035 | 0.6765 |
-| Probability averaging | Weights .05/.20/.05/.70 | 0.8745 | 0.5138 | 0.6865 |
-| Fixed log-probability | Weights .05/.25/.05/.65 | **0.8758** | 0.5189 | 0.6895 |
-| Nested stacking | 28 probability features | 0.8436 | 0.4560 | 0.6424 |
-| Metadata-gated fusion | Patient-specific weights | 0.8758 | **0.5208** | **0.6901** |
-
-
-## Finalist validation
-
-| Strategy | Macro AUROC | Balanced accuracy | Composite |
-|---|---:|---:|---:|
-| **Fixed log-probability** | **0.9062** | 0.5429 | **0.7245** |
-| Metadata-gated | 0.8998 | 0.5429 | 0.7213 |
-
-
-
-## Held-out test results
-
-| Configuration | Macro AUROC | 95% CI | Balanced accuracy | 95% CI |
+| Configuration | Test macro AUROC | 95% CI | Test balanced accuracy | 95% CI |
 |---|---:|---:|---:|---:|
 | Metadata | 0.7013 | 0.6077–0.7949 | **0.4214** | 0.2625–0.5784 |
-| UNI2-h | 0.8200 | 0.7400–0.8905 | 0.3817 | 0.2305–0.5639 |
+| UNI2 | 0.8200 | 0.7400–0.8905 | 0.3817 | 0.2305–0.5639 |
 | Virchow2 | 0.8106 | 0.7268–0.8811 | 0.3302 | 0.2109–0.4620 |
 | Prism2 | 0.8079 | 0.7241–0.8893 | 0.3619 | 0.2411–0.4830 |
 | Prism2 + metadata | 0.8079 | 0.7241–0.8893 | 0.3619 | 0.2411–0.4830 |
-| **Fused fixed log-probability** | **0.8351** | **0.7632–0.9007** | 0.3587 | 0.2338–0.4871 |
+| **Fused log-probability** | **0.8351** | **0.7632–0.9007** | 0.3587 | 0.2338–0.4871 |
 
-## Paired bootstrap: fusion minus comparator
+| Original-test conclusion | Result |
+|---|---|
+| Fusion achieved highest macro AUROC | **Yes** |
+| Fusion achieved highest balanced accuracy among foundation models | No |
+| Fusion strictly outperformed every foundation model on both metrics | **No** |
+| Main failure | Zero recall for Cribriform and Lepidic |
 
-| Comparator | AUROC Δ | 95% CI | P(fusion >) | BA Δ | 95% CI | P(fusion >) |
-|---|---:|---:|---:|---:|---:|---:|
-| Metadata | +0.1358 | +0.0071 to +0.2541 | 0.981 | −0.0583 | −0.2604 to +0.1424 | 0.280 |
-| UNI2-h | +0.0156 | −0.0272 to +0.0607 | 0.754 | −0.0268 | −0.2001 to +0.1304 | 0.387 |
-| Virchow2 | +0.0253 | −0.0275 to +0.0802 | 0.842 | +0.0295 | −0.1000 to +0.1476 | 0.669 |
-| Prism2 | +0.0269 | −0.0125 to +0.0629 | 0.925 | −0.0040 | −0.0714 to +0.0714 | 0.411 |
+## Epoch-Based Test Results
 
-## Per-class test AUROC
+> Post-hoc development experiment using PyTorch Linear classifiers. Hyperparameters and epoch counts were selected using train-only repeated CV. The fixed validation set was evaluated once. The test set was not re-evaluated.
 
-| Class | UNI2 | Virchow2 | Prism2 | Fused |
+### Training protocol
+
+| Item | Setting |
+|---|---|
+| Classifier | `StandardScaler → PyTorch Linear(input_dim, 7)` |
+| Optimizer | AdamW |
+| CV | Repeated stratified 5-fold × 3 repeats |
+| CV splits per configuration | 15 |
+| Tuning budget | 12 configurations per representation |
+| Learning rates | 0.0001, 0.0003, 0.001 |
+| Weight decay | 0.001, 0.01 |
+| Class weighting | None, balanced |
+| Maximum epochs | 100 |
+| Early-stopping patience | 15 |
+| Selection score | Mean composite − 0.5 × SEM |
+| Test set | Not evaluated |
+
+### Main epoch-based comparison
+
+| Representation | Train-CV AUROC | Train-CV BA | Validation AUROC | Validation BA |
 |---|---:|---:|---:|---:|
-| Acinar | 0.8148 | **0.8380** | 0.6852 | 0.7546 |
-| Cribriform | **0.8803** | 0.7863 | 0.7521 | 0.8120 |
-| In situ | 0.9024 | 0.8956 | **0.9428** | **0.9428** |
-| Lepidic | 0.7434 | 0.7039 | 0.7039 | **0.7697** |
-| Micropapillary | 0.7730 | 0.7784 | **0.8378** | 0.8270 |
-| Papillary | 0.7374 | 0.8013 | **0.8586** | 0.8552 |
-| Solid | **0.8889** | 0.8704 | 0.8750 | 0.8843 |
+| Metadata | 0.5334 | 0.1516 | 0.5015 | 0.0857 |
+| UNI2 | 0.8160 | 0.4788 | 0.7273 | 0.3286 |
+| Virchow2 | 0.8099 | 0.4808 | 0.7870 | 0.3762 |
+| **Prism2** | **0.8768** | 0.5585 | **0.9319** | **0.6500** |
+| Prism2 + metadata | 0.8678 | **0.5700** | 0.9118 | 0.5786 |
+| Early concatenation | 0.8664 | 0.5590 | 0.8607 | 0.4238 |
+| Early L2 concatenation | 0.8648 | 0.5628 | 0.8623 | 0.4238 |
 
-## Fused confusion summary
+### Selected Linear configurations
 
-| True class | Correct / total | Recall | Main errors |
-|---|---:|---:|---|
-| Acinar | 2/6 | 0.333 | Solid 2; Cribriform 1; Papillary 1 |
-| Cribriform | 0/3 | 0.000 | Micropapillary 2; Solid 1 |
-| In situ | 5/9 | 0.556 | Papillary 2; Lepidic 1; Micropapillary 1 |
-| Lepidic | 0/4 | 0.000 | Papillary 3; In situ 1 |
-| Micropapillary | 2/5 | 0.400 | Papillary 2; Solid 1 |
-| Papillary | 5/9 | 0.556 | Acinar 2; In situ 2 |
-| Solid | 4/6 | 0.667 | Cribriform 1; Micropapillary 1 |
+| Representation | Learning rate | Weight decay | Class weight | Fixed epochs |
+|---|---:|---:|---|---:|
+| Metadata | 0.0003 | 0.001 | balanced | 1 |
+| UNI2 | 0.0010 | 0.001 | balanced | 9 |
+| Virchow2 | 0.0003 | 0.001 | balanced | 13 |
+| Prism2 | 0.0010 | 0.010 | none | 6 |
+| Prism2 + metadata | 0.0010 | 0.010 | balanced | 5 |
+| Early concatenation | 0.0003 | 0.001 | balanced | 5 |
+| Early L2 concatenation | 0.0003 | 0.001 | balanced | 5 |
+
+### Late-fusion results
+
+| Strategy | Weights: Metadata / UNI2 / Virchow2 / Prism2 | OOF AUROC | OOF BA | Validation AUROC | Validation BA |
+|---|---|---:|---:|---:|---:|
+| Probability averaging | 0.05 / 0.20 / 0.10 / 0.65 | 0.8687 | **0.5237** | 0.9001 | **0.6857** |
+| **Log-probability fusion** | **0.05 / 0.15 / 0.10 / 0.70** | **0.8741** | 0.5226 | **0.9077** | **0.6857** |
+| Prism2 alone | — | 0.8613 | 0.5017 | **0.9319** | 0.6500 |
+
+### Selected epoch-based finalist
+
+| Item | Result |
+|---|---|
+| Selected strategy | **Log-probability fusion** |
+| Fusion weights | Metadata 0.05 · UNI2 0.15 · Virchow2 0.10 · Prism2 0.70 |
+| Validation macro AUROC | 0.9077 |
+| Validation balanced accuracy | **0.6857** |
+| Best single-model validation AUROC | Prism2: **0.9319** |
+| Best single-model validation BA | Prism2: 0.6500 |
+| Fusion strictly beats Prism2 on both metrics | **No** |
+| Test set evaluated | **No** |
+
+### Training-curve artifacts
+
+| Artifact | Location |
+|---|---|
+| Full 200-epoch Prism2 diagnostic | `artifacts/results/linear_training/prism2/training_curves.png` |
+| CV-locked training curves | `artifacts/results/linear_validation/<representation>/training_curves.png` |
+| Epoch histories | `artifacts/results/linear_validation/<representation>/training_history.csv` |
