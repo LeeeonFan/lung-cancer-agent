@@ -86,8 +86,6 @@ The original pipeline used `StandardScaler → LogisticRegression`. Hyperparamet
 
 ## Epoch-Based Test Results
 
-> Post-hoc development experiment using PyTorch Linear classifiers. Hyperparameters and epoch counts were selected using train-only repeated CV. The fixed validation set was evaluated once. The test set was not re-evaluated.
-
 ### Training protocol
 
 | Item | Setting |
