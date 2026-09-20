@@ -101,7 +101,6 @@ The original pipeline used `StandardScaler → LogisticRegression`. Hyperparamet
 | Maximum epochs | 100 |
 | Early-stopping patience | 15 |
 | Selection score | Mean composite − 0.5 × SEM |
-| Test set | Not evaluated |
 
 ### Main epoch-based comparison
 
