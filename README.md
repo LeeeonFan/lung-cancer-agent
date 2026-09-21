@@ -1,156 +1,229 @@
-# Foundation-Model Fusion for Lung Cancer Subtyping
+# Lung Cancer Foundation-Model Fusion
 
-## Headline result
+Fusion of UNI2-h, Virchow2, Prism2, and patient metadata for 7-class lung adenocarcinoma subtype prediction.
 
-| Outcome | Result |
-|---|---|
-| Selected fusion | Fixed weighted log-probability fusion |
-| Fusion weights | Metadata 0.05 · UNI2 0.25 · Virchow2 0.05 · Prism2 0.65 |
-| Test macro AUROC | **0.8351** (95% CI 0.7632–0.9007) |
-| Test balanced accuracy | 0.3587 (95% CI 0.2338–0.4871) |
-| Best single-model AUROC | UNI2: 0.8200 |
-| Best single-model balanced accuracy | UNI2: 0.3817 |
+## Dataset and split
 
+| Item | Value |
+|---|---:|
+| Metadata slides | 408 |
+| Available repository images | 386 |
+| Included patient records | 204 |
+| Independent grouping IDs | 203 |
+| Excluded patients without available images | 6 |
+| Classes | 7 |
+| Split seed | 42 |
 
-| Data quirk | Policy |
-|---|---|
-| `8377886` occurs at ages 68 and 69 | Retain as two records; shared grouping ID keeps both in one split |
-| Five patients have conflicting slide labels | Select numerically lowest available WSI and use its label |
-| Missing images | Use lowest available WSI; exclude only when no image is available |
+| Split | Records | Grouping IDs |
+|---|---:|---:|
+| Train | 141 | 141 |
+| Fixed validation | 21 | 21 |
+| Test | 42 | 41 |
 
-## Final cohort and split
+All splits were created at the `SampleNumber` grouping level. The two records sharing grouping ID `8377886` were assigned to the same split.
 
-| Class | Total | Train | Validation | Test |
-|---|---:|---:|---:|---:|
-| Acinar | 30 | 21 | 3 | 6 |
-| Cribriform | 15 | 11 | 1 | 3 |
-| In situ | 45 | 31 | 5 | 9 |
-| Lepidic | 19 | 13 | 2 | 4 |
-| Micropapillary | 26 | 18 | 3 | 5 |
-| Papillary | 40 | 27 | 4 | 9 |
-| Solid | 29 | 20 | 3 | 6 |
-| **Total** | **204** | **141** | **21** | **42** |
+## Data preparation
 
-| Split control | Value |
-|---|---|
-| Seed | 42 |
-| Grouping IDs: train / validation / test | 141 / 21 / 41 |
-| Stratification | 7-class subtype |
-
-## Image processing and tiling
-
-| Stage | Configuration / result |
-|---|---|
-| Selected raw images | 204 images included|
-| Downsampling | 80× → 20×; scale 0.25; Lanczos3; JPEG Q95 |
-| Downsample output | 25.27 GB; 39 minutes |
-| Tissue mask | Saturation ≥0.08; value 0.20–0.97 |
-| Morphology | 3×3 opening ×1; closing ×2 |
-| Mask minimum component | 0.0005 |
-| Tile size / stride | 224×224 / 224; no overlap |
-| Minimum tissue fraction | 0.50 |
+| Stage | Result |
+|---|---:|
+| Selected images | 204 |
+| Downsampling | 80× → 20× |
 | Maximum tiles per slide | 1,024 |
 | Selected tiles | 200,488 |
-| Slides reaching cap | 184/204 |
-| Tiles/slide: min / median / max | 169 / 1,024 / 1,024 |
+| Slides reaching tile cap | 184/204 |
+
+One available slide was selected deterministically per patient. When the lowest-numbered slide was unavailable, the lowest available slide was used. Patients with no available image were excluded.
 
 ## Foundation-model embeddings
 
-| Model | Input | Tile representation | Slide aggregation | Final shape |
-|---|---|---|---|---:|
-| UNI2-h | 224×224 RGB; official transform | 1,536-d | Mean pooling | 204×1,536 |
-| Virchow2 | 224×224 RGB; official transform | CLS 1,280 + mean patch 1,280 | Mean pooling | 204×2,560 |
-| Prism2 | ≤1,024 Virchow2 CLS tokens | — | Pretrained slide encoder | 204×2,560 |
-| Metadata | Age + sex | — | — | 204×2 |
+| Model | Role | Tile/slide aggregation | Slide dimension |
+|---|---|---|---:|
+| UNI2-h | Tile encoder | Mean pooling | 1,536 |
+| Virchow2 | Tile encoder | CLS token + mean patch token, followed by slide mean pooling | 2,560 |
+| Prism2 | Slide encoder | Native Prism2 slide encoder | 2,560 |
+
+| Cached representation | Shape |
+|---|---:|
+| UNI2-h | 204 × 1,536 |
+| Virchow2 | 204 × 2,560 |
+| Prism2 | 204 × 2,560 |
+| Metadata | 204 × 2 |
 
 
-## Original Locked Test Results
+## Experimental sequence
 
-The original pipeline used `StandardScaler → LogisticRegression`. Hyperparameters were selected using repeated stratified 5-fold cross-validation with three repeats. The locked test set was evaluated once.
+| Stage | Experiment | Main result | Decision |
+|---:|---|---|---|
+| 1 | PyTorch Linear baselines | Strongest train-CV representation: Prism2 + metadata | Continue with PyTorch Linear |
+| 2 | Small MLP vs Linear | MLP average selection-score change: −0.00118; MLP won 3/6 image representations | Keep Linear |
+| 3 | Early fusion | L2 concatenation score: 0.70784 | Retain as early-fusion baseline |
+| 4 | PCA early fusion | Score: 0.61952 | Reject |
+| 5 | Probability/log fusion | Log fusion score: 0.69159 | Retain |
+| 6 | Temperature calibration | Best score: 0.69227; gain over log fusion: +0.00068 | Insufficient gain |
+| 7 | Class-specific fusion | Best score: 0.69174; gain: +0.00015 | Reject |
+| 8 | Fixed validation | Global log fusion had best finalist composite | Select global log fusion |
+| 9 | Locked PyTorch test | Fusion did not beat every single model on both metrics | Requirement not met |
 
-| Configuration | Test macro AUROC | 95% CI | Test balanced accuracy | 95% CI |
+## Classifier-family comparison
+
+Both classifier families used the same:
+
+- seven representations;
+- 12 hyperparameter configurations;
+- 5-fold × 3-repeat train-only CV;
+- seeds, preprocessing, metrics, and stopping policy.
+
+| Representation | Linear score | MLP score | MLP − Linear |
+|---|---:|---:|---:|
+| UNI2 | 0.64046 | 0.64143 | +0.00097 |
+| Virchow2 | **0.63995** | 0.62889 | −0.01106 |
+| Prism2 | 0.71211 | **0.71343** | +0.00132 |
+| Prism2 + metadata | 0.71336 | **0.72074** | +0.00739 |
+| Early concat | **0.70727** | 0.70678 | −0.00049 |
+| Early L2 concat | **0.70784** | 0.70266 | −0.00518 |
+
+**Selected downstream classifier: PyTorch Linear.**
+
+## PyTorch Linear train-CV baselines
+
+| Representation | Macro AUROC | Balanced accuracy | Selection score | Epochs |
 |---|---:|---:|---:|---:|
-| Metadata | 0.7013 | 0.6077–0.7949 | **0.4214** | 0.2625–0.5784 |
-| UNI2 | 0.8200 | 0.7400–0.8905 | 0.3817 | 0.2305–0.5639 |
-| Virchow2 | 0.8106 | 0.7268–0.8811 | 0.3302 | 0.2109–0.4620 |
-| Prism2 | 0.8079 | 0.7241–0.8893 | 0.3619 | 0.2411–0.4830 |
-| Prism2 + metadata | 0.8079 | 0.7241–0.8893 | 0.3619 | 0.2411–0.4830 |
-| **Fused log-probability** | **0.8351** | **0.7632–0.9007** | 0.3587 | 0.2338–0.4871 |
+| Metadata | 0.53337 | 0.15157 | 0.33358 | 1 |
+| UNI2 | 0.81599 | 0.47884 | 0.64046 | 9 |
+| Virchow2 | 0.80987 | 0.48084 | 0.63995 | 13 |
+| Prism2 | **0.87684** | 0.55855 | 0.71211 | 6 |
+| Prism2 + metadata | 0.86783 | **0.57000** | **0.71336** | 5 |
+| Early concat | 0.86635 | 0.55896 | 0.70727 | 5 |
+| Early L2 concat | 0.86484 | 0.56277 | 0.70784 | 5 |
 
-| Original-test conclusion | Result |
-|---|---|
-| Fusion achieved highest macro AUROC | **Yes** |
-| Fusion achieved highest balanced accuracy among foundation models | No |
-| Fusion strictly outperformed every foundation model on both metrics | **No** |
-| Main failure | Zero recall for Cribriform and Lepidic |
+Selection score:
 
-## Epoch-Based Test Results
+\[
+\text{mean}\left(
+\frac{\text{macro AUROC}+\text{balanced accuracy}}{2}
+\right)
+-0.5\times\text{SEM}
+\]
 
-### Training protocol
+## Fusion search
 
-| Item | Setting |
-|---|---|
-| Classifier | `StandardScaler → PyTorch Linear(input_dim, 7)` |
-| Optimizer | AdamW |
-| CV | Repeated stratified 5-fold × 3 repeats |
-| CV splits per configuration | 15 |
-| Tuning budget | 12 configurations per representation |
-| Learning rates | 0.0001, 0.0003, 0.001 |
-| Weight decay | 0.001, 0.01 |
-| Class weighting | None, balanced |
-| Maximum epochs | 100 |
-| Early-stopping patience | 15 |
-| Selection score | Mean composite − 0.5 × SEM |
+### PyTorch Linear OOF streams
 
-### Main epoch-based comparison
+| Stream | Macro AUROC | Balanced accuracy | Composite |
+|---|---:|---:|---:|
+| Metadata | 0.50248 | 0.17500 | 0.33874 |
+| UNI2 | 0.80281 | 0.40081 | 0.60181 |
+| Virchow2 | 0.79461 | 0.40541 | 0.60001 |
+| Prism2 | **0.86132** | **0.50170** | **0.68151** |
 
-| Representation | Train-CV AUROC | Train-CV BA | Validation AUROC | Validation BA |
+### Late fusion
+
+| Method | Macro AUROC | Balanced accuracy | Selection score |
+|---|---:|---:|---:|
+| Probability fusion | 0.86871 | **0.52372** | 0.69008 |
+| Log-probability fusion | **0.87409** | 0.52261 | **0.69159** |
+| Calibrated probability fusion | 0.87098 | **0.52610** | 0.69227 |
+| Class-specific fusion | 0.87438 | 0.52261 | 0.69174 |
+
+Calibration and class-specific fusion did not exceed the predeclared minimum material improvement of `0.001` over the existing log-fusion incumbent.
+
+### Locked fusion
+
+| Stream | Weight |
+|---|---:|
+| Metadata | 0.05 |
+| UNI2 | 0.15 |
+| Virchow2 | 0.10 |
+| Prism2 | 0.70 |
+
+## Fixed-validation finalists
+
+| Strategy | Macro AUROC | Balanced accuracy | Composite |
+|---|---:|---:|---:|
+| Prism2 | **0.93187** | 0.65000 | 0.79094 |
+| Probability fusion | 0.90008 | **0.68571** | 0.79290 |
+| Log-probability fusion | 0.90772 | **0.68571** | **0.79672** |
+
+**Selected fusion: global weighted log-probability fusion.**
+
+## Final PyTorch test results
+
+| Configuration | Macro AUROC (95% CI) | Balanced accuracy (95% CI) |
+|---|---:|---:|
+| Metadata | 0.5091 [0.3958, 0.6262] | 0.2389 [0.1403, 0.3571] |
+| UNI2 | 0.7720 [0.6726, 0.8582] | **0.4770** [0.3430, 0.6190] |
+| Virchow2 | 0.7283 [0.6313, 0.8153] | 0.3063 [0.1967, 0.4161] |
+| Prism2 | **0.8011** [0.7114, 0.8898] | 0.3222 [0.2007, 0.4433] |
+| Prism2 + metadata | 0.7978 [0.7122, 0.8845] | 0.3587 [0.2293, 0.4881] |
+| Fused log probability | 0.7920 [0.7068, 0.8676] | 0.3381 [0.2242, 0.4578] |
+
+Bootstrap confidence intervals used 2,000 grouping-ID cluster resamples.
+
+**Fusion did not strictly outperform every single-foundation-model baseline on both primary metrics.**
+
+## Test failure analysis
+
+| Class | UNI2 recall | Prism2 recall | Fusion recall | Fusion AUROC |
 |---|---:|---:|---:|---:|
-| Metadata | 0.5334 | 0.1516 | 0.5015 | 0.0857 |
-| UNI2 | 0.8160 | 0.4788 | 0.7273 | 0.3286 |
-| Virchow2 | 0.8099 | 0.4808 | 0.7870 | 0.3762 |
-| **Prism2** | **0.8768** | 0.5585 | **0.9319** | **0.6500** |
-| Prism2 + metadata | 0.8678 | **0.5700** | 0.9118 | 0.5786 |
-| Early concatenation | 0.8664 | 0.5590 | 0.8607 | 0.4238 |
-| Early L2 concatenation | 0.8648 | 0.5628 | 0.8623 | 0.4238 |
+| Acinar | **0.500** | 0.333 | 0.333 | 0.634 |
+| Cribriform | 0.000 | 0.000 | 0.000 | 0.701 |
+| In situ | **0.778** | 0.667 | **0.778** | 0.933 |
+| Lepidic | **0.750** | 0.000 | 0.000 | 0.678 |
+| Micropapillary | 0.200 | 0.200 | 0.200 | 0.870 |
+| Papillary | 0.444 | **0.556** | **0.556** | 0.848 |
+| Solid | **0.667** | 0.500 | 0.500 | 0.880 |
 
-### Selected Linear configurations
+The largest balanced-accuracy deficit came from Lepidic: UNI2 correctly classified 3/4 cases, whereas Prism2 and the fused model classified 0/4. Cribriform recall was zero for all three models. Nonzero Lepidic and Cribriform AUROCs indicate that ranking signal remained, but those classes failed at the final argmax decision stage.
 
-| Representation | Learning rate | Weight decay | Class weight | Fixed epochs |
-|---|---:|---:|---|---:|
-| Metadata | 0.0003 | 0.001 | balanced | 1 |
-| UNI2 | 0.0010 | 0.001 | balanced | 9 |
-| Virchow2 | 0.0003 | 0.001 | balanced | 13 |
-| Prism2 | 0.0010 | 0.010 | none | 6 |
-| Prism2 + metadata | 0.0010 | 0.010 | balanced | 5 |
-| Early concatenation | 0.0003 | 0.001 | balanced | 5 |
-| Early L2 concatenation | 0.0003 | 0.001 | balanced | 5 |
+## Previous sklearn pipeline
 
-### Late-fusion results
+| Pipeline | Fusion macro AUROC | Fusion balanced accuracy |
+|---|---:|---:|
+| sklearn Logistic Regression | **0.8351** | **0.3587** |
+| PyTorch Linear | 0.7920 | 0.3381 |
 
-| Strategy | Weights: Metadata / UNI2 / Virchow2 / Prism2 | OOF AUROC | OOF BA | Validation AUROC | Validation BA |
-|---|---|---:|---:|---:|---:|
-| Probability averaging | 0.05 / 0.20 / 0.10 / 0.65 | 0.8687 | **0.5237** | 0.9001 | **0.6857** |
-| **Log-probability fusion** | **0.05 / 0.15 / 0.10 / 0.70** | **0.8741** | 0.5226 | **0.9077** | **0.6857** |
-| Prism2 alone | — | 0.8613 | 0.5017 | **0.9319** | 0.6500 |
+The sklearn result is retained as the original locked test evaluation. The PyTorch result is a second-stage classifier migration using the same patient split.
 
-### Selected epoch-based finalist
+## Training curves
 
-| Item | Result |
+Training curves include training loss, validation loss, validation macro AUROC, and validation balanced accuracy.
+
+| Representation | Plot |
 |---|---|
-| Selected strategy | **Log-probability fusion** |
-| Fusion weights | Metadata 0.05 · UNI2 0.15 · Virchow2 0.10 · Prism2 0.70 |
-| Validation macro AUROC | 0.9077 |
-| Validation balanced accuracy | **0.6857** |
-| Best single-model validation AUROC | Prism2: **0.9319** |
-| Best single-model validation BA | Prism2: 0.6500 |
-| Fusion strictly beats Prism2 on both metrics | **No** |
-| Test set evaluated | **No** |
+| Metadata | [Training curves](docs/figures/training/metadata.png) |
+| UNI2 | [Training curves](docs/figures/training/uni2.png) |
+| Virchow2 | [Training curves](docs/figures/training/virchow2.png) |
+| Prism2 | [Training curves](docs/figures/training/prism2.png) |
+| Prism2 + metadata | [Training curves](docs/figures/training/prism2_metadata.png) |
+| Early concat | [Training curves](docs/figures/training/early_concat.png) |
+| Early L2 concat | [Training curves](docs/figures/training/early_l2_concat.png) |
 
-### Training-curve artifacts
+## Main commands
 
-| Artifact | Location |
-|---|---|
-| Full 200-epoch Prism2 diagnostic | `artifacts/results/linear_training/prism2/training_curves.png` |
-| CV-locked training curves | `artifacts/results/linear_validation/<representation>/training_curves.png` |
-| Epoch histories | `artifacts/results/linear_validation/<representation>/training_history.csv` |
+```bash
+uv sync
+
+uv run python scripts/build_patient_manifest.py
+uv run python scripts/make_splits.py
+uv run python scripts/build_slide_embeddings.py
+uv run python scripts/validate_slide_embeddings.py
+
+uv run python scripts/run_linear_cv.py --representation prism2
+uv run python scripts/run_mlp_cv.py --representation prism2
+uv run python scripts/compare_classifier_families.py
+
+uv run python scripts/run_pca_linear_cv.py
+uv run python scripts/run_temperature_calibration.py
+uv run python scripts/run_class_specific_fusion.py
+
+uv run python scripts/run_pytorch_final_test.py
+```
+
+## Verification
+
+```bash
+uv run ruff check .
+uv run pytest
+```
+
+Current automated-test status: **15 passed**.
